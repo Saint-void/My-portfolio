@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sogolo Donaldson | About Me</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Rajdhani:wght@300;400;500;600&display=swap">
+    <style>
+        /* Additional styles specific to the about page */
+        .about-detailed {
+            padding: 8rem 0;
+        }
+        
+        .about-intro {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            color: var(--light-text);
+        }
+        
+        .about-highlight {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+        
+        .about-section {
+            margin-bottom: 3rem;
+        }
+        
+        .about-section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .about-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), transparent);
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary-color), transparent);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2.5rem;
+        }
+        
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background: var(--primary-color);
+            box-shadow: 0 0 10px var(--primary-color);
+        }
+        
+        .timeline-date {
+            font-family: var(--font-primary);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-subtitle {
+            font-size: 1rem;
+            color: var(--light-text);
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+        
+        .timeline-content {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--light-text);
+        }
+        
+        .personal-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            margin-right: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .info-value {
+            color: var(--light-text);
+        }
+        
+        .interests {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .interest-tag {
+            background: rgba(0, 247, 255, 0.1);
+            border: 1px solid var(--primary-color);
+            border-radius: 20px;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.9rem;
+            color: var(--light-text);
+            transition: all 0.3s ease;
+        }
+        
+        .interest-tag:hover {
+            background: rgba(0, 247, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .profile-image-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            height: 73%;
+        }
+        
+        .profile-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .image-frame {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            z-index: 0;
+        }
+        
+        .image-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(0, 247, 255, 0.2) 0%, transparent 70%);
+            z-index: 2;
+            pointer-events: none;
+        }
+        
+        .quote-container {
+            position: relative;
+            padding: 3rem;
+            margin: 4rem 0;
+            background: rgba(0, 247, 255, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            font-size: 1.5rem;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: var(--light-text);
+        }
+        
+        .quote-author {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-align: right;
+        }
+        
+        .quote-icon {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            font-size: 3rem;
+            opacity: 0.2;
+            color: var(--primary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-image-container {
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="noise"></div>
+    <div class="lines"></div>
+    
+    <header>
+        <div class="logo">SD</div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
+                <li><a href="skills.html" class="nav-link">Skills</a></li>
+                <li><a href="project.html" class="nav-link">Projects</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </header>
+
+    <main>
+        <section class="about-detailed">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">About Me</h2>
+                    <div class="underline"></div>
+                </div>
+                
+                <p class="about-intro animate-on-scroll">
+                    Hello! I'm <span class="about-highlight">Sogolo Donaldson</span>, a passionate Full Stack Developer with a love for creating elegant, efficient, and user-friendly web applications. With over 5 years of experience in the tech industry, I've had the opportunity to work on a diverse range of projects, from small business websites to complex enterprise applications. My journey in technology has been driven by a constant desire to learn, innovate, and solve real-world problems through code.
+                </p>
+                
+                <div class="about-grid animate-on-scroll">
+                    <div class="profile-image-container">
+                        <div class="image-frame"></div>
+                        <img src="WhatsApp Image 2025-04-22 at 22.56.01_9bbb8bec.jpg" alt="Sogolo Donaldson" class="profile-image">
+                        <div class="image-glow"></div>
+                    </div>
+                    
+                    <div class="personal-details">
+                        <div class="about-section">
+                            <h3 class="about-section-title">Personal Information</h3>
+                            <div class="personal-info">
+                                <div class="info-item">
+                                    <span class="info-label">Name:</span>
+                                    <span class="info-value">Sogolo Donaldson</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Age:</span>
+                                    <span class="info-value">18 Years</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Location:</span>
+                                    <span class="info-value">Agege, Lagos state, Nigeria</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Email:</span>
+                                    <span class="info-value">sogolodonald11@gmail.com</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Phone:</span>
+                                    <span class="info-value">+2347074164745</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Nationality:</span>
+                                    <span class="info-value">Nigeria</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Languages:</span>
+                                    <span class="info-value">English</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Availability:</span>
+                                    <span class="info-value">Full-time, Part-time, Freelance, Contrast</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="about-section">
+                            <h3 class="about-section-title">My Approach</h3>
+                            <p class="timeline-content">
+                                I believe in creating technology that not only functions flawlessly but also provides an exceptional user experience. My approach combines technical expertise with creative problem-solving to deliver solutions that exceed expectations. I'm passionate about clean code, responsive design, and staying at the forefront of technological advancements.
+                            </p>
+                            <p class="timeline-content">
+                                Whether working independently or as part of a team, I bring dedication, attention to detail, and a positive attitude to every project. I thrive in collaborative environments where ideas can be freely exchanged and refined to create the best possible outcomes.
+                            </p>
+                        </div>
+                        
+                        <div class="about-section">
+                            <h3 class="about-section-title">Interests & Hobbies</h3>
+                            <p class="timeline-content">
+                                Beyond coding, I'm passionate about continuous learning and exploring new technologies. When I'm not in front of a computer, you might find me:
+                            </p>
+                            <div class="interests">
+                                <span class="interest-tag">Photography</span>
+                                <span class="interest-tag">Music</span>
+                                <span class="interest-tag">Reading</span>
+                                <span class="interest-tag">Chess</span>
+                                <span class="interest-tag">Music Production</span>
+                                <span class="interest-tag">Gaming</span>
+                                <span class="interest-tag">Open Source</span>
+                                <span class="interest-tag">Tech Meetups</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quote-container animate-on-scroll">
+                    <div class="quote-icon">"</div>
+                    <p class="quote-text">
+                        The best way to predict the future is to invent it. I strive to create technology that makes a positive impact and pushes the boundaries of what's possible.
+                    </p>
+                    <p class="quote-author">— Sogolo Donaldson</p>
+                </div>
+                
+                <div class="about-section animate-on-scroll">
+                    <h3 class="about-section-title">Education</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2024 - Till date</div>
+                            <h4 class="timeline-title">Master Mind Series (MMS)</h4>
+                            <p class="timeline-subtitle">NIIT, Nigeria</p>
+                            <p class="timeline-content">
+                                specialize in full stack developer but in front-end and back-end.
+                            </p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2014 - 2018</div>
+                            <h4 class="timeline-title">Bachelor of Science in Computer Science</h4>
+                            <p class="timeline-subtitle">BYU College, Idaho</p>
+                            <p class="timeline-content">
+                                Graduated with honors. Focused on web development, algorithms, and data structures. Active member of the Computer Science Club and participated in multiple hackathons.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-section animate-on-scroll">
+                    <h3 class="about-section-title">Work Experience</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2024 - Present</div>
+                            <h4 class="timeline-title">Full Stack Developer - Freelance</h4>
+                            
+                            <p class="timeline-content">
+                               1. Built and maintained dynamic web applications for small businesses and startups using React, Node.js, and MongoDB.
+                                <br>
+                               2. Designed responsive, user-friendly frontends and implemented secure, efficient backends tailored to client needs.
+                                <br>
+                               3. Collaborated with clients from various industries—fashion, healthcare, and retail—to translate ideas into functional web platforms.
+                                <br>
+                               4. Integrated third-party services like Cloudinary for image uploads and Stripe for payment processing.
+                                <br>
+                               5. Managed deployments and performance monitoring on platforms like Heroku, Vercel, and Netlify.
+                                <br>
+                               6. Wrote clean, maintainable code and followed best practices to ensure scalability and ease of handoff.
+                                <br>
+                               7. Continuously learned new tools and frameworks to stay up-to-date with industry trends and deliver modern solutions.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">SD</div>
+                <p class="footer-text">Building innovative web solutions with cutting-edge technologies.</p>
+                <div class="footer-links">
+                    <a href="index.html" class="footer-link">Home</a>
+                    <a href="about.html" class="footer-link">About</a>
+                    <a href="skills.html" class="footer-link">Skills</a>
+                    <a href="index.html#projects" class="footer-link">Projects</a>
+                    <a href="contact.html" class="footer-link">Contact</a>
+                </div>
+                <p class="copyright">&copy; 2025 Sogolo Donaldson. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Additional JavaScript for the about page
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize animations when elements come into view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Add animated class to animate-on-scroll elements
+                        if (entry.target.classList.contains('animate-on-scroll')) {
+                            entry.target.classList.add('animated');
+                        }
+                        
+                        // Unobserve after animation
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+            
+            // Observe all animate-on-scroll elements
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
